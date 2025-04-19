@@ -2,7 +2,7 @@
 
 ### Glob::Grammar
 
-Grammar for (the Glob language)[https://en.wikipedia.org/wiki/Glob_(programming)].  
+Grammar for [the Glob language](https://en.wikipedia.org/wiki/Glob_(programming)).  
 
 Supports ? and * and ranges (at least some).  
 
