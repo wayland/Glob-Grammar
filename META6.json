@@ -1,0 +1,24 @@
+{
+	"name": "Glob::Grammar",
+	"description": "Grammar for Glob language, with an Actions class that converts to regex",
+	"version": "0.0.1",
+	"license": "Artistic-2.0",
+	"source-url": "https://github.com/wayland/Glob-Grammar.git",
+
+	"auth": "zef:wayland",
+	"authors": "Tim Nelson",
+
+	"build-depends": [
+	],
+	"depends": [
+	],
+	"perl": "v6.d",
+	"provides": {
+		"Glob::Grammar": "lib/Glob/Grammar.rakumod",
+		"Glob::ToRegexActions": "lib/Glob/ToRegexActions.rakumod"
+	},
+	"resources": [
+	],
+	"test-depends": [
+	]
+}
