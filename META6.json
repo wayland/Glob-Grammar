@@ -1,7 +1,7 @@
 {
 	"name": "Glob::Grammar",
 	"description": "Grammar for Glob language, with an Actions class that converts to regex",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"license": "Artistic-2.0",
 	"source-url": "https://github.com/wayland/Glob-Grammar.git",
 
