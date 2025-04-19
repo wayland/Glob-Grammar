@@ -7,8 +7,6 @@ use	Test;
 use	Glob::Grammar;
 use	Glob::ToRegexActions;
 
-plan 3;
-
 my @test-data = (
 	%(
 		'name' => 'General test',
@@ -35,6 +33,8 @@ my @test-data = (
 		'match-test' => 'Module::Name::Complete',
 	),
 );
+
+plan @test-data.elems;
 
 for @test-data>>.<name glob regex match-test> -> ($name, $source, $regex, $match-test) {
 	my $fetched-regex = Glob::Grammar.parse($source, actions => Glob::ToRegexActions.new()).made;
