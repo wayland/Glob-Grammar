@@ -1,0 +1,46 @@
+#!/usr/bin/raku
+
+use lib 'lib';
+
+use	Test;
+
+use	Glob::Grammar;
+use	Glob::ToRegexActions;
+
+plan 3;
+
+my @test-data = (
+	%(
+		'name' => 'General test',
+		'glob' => 'Worried-bag',
+		'regex' => '^Worried\-bag$',
+		'match-test' => 'Worried-bag'
+	),
+	%(
+		'name' => 'Test * usage',
+		'glob' => 'Module::Name::*',
+		'regex' => '^Module\\:\\:Name\\:\\:.*$',
+		'match-test' => 'Module::Name::Complete',
+	),
+	%(
+		'name' => 'Test ? usage',
+		'glob' => 'Module::Name::?omplete',
+		'regex' => '^Module\\:\\:Name\\:\\:.omplete$',
+		'match-test' => 'Module::Name::Complete',
+	),
+	%(
+		'name' => 'Test ranges',
+		'glob' => 'Module::Name::[ABC][lmno]mplete',
+		'regex' => '^Module\\:\\:Name\\:\\:<[A B C]><[l m n o]>mplete$',
+		'match-test' => 'Module::Name::Complete',
+	),
+);
+
+for @test-data>>.<name glob regex match-test> -> ($name, $source, $regex, $match-test) {
+	my $fetched-regex = Glob::Grammar.parse($source, actions => Glob::ToRegexActions.new()).made;
+	subtest {
+		plan 2;
+		is($fetched-regex, $regex, 'Glob to Regex had expected result');
+		is($match-test ~~ /<$fetched-regex>/, $match-test, 'Regex matches as expected');
+	}, "Test: $name";
+}
